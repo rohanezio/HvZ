@@ -45,18 +45,3 @@
         %td
           %b Time Zone:
         %td=f.time_zone_select :time_zone
-      %tr
-        %td
-          %b Front Page:
-          (Uses
-          =link_to("Textile", "http://www.textism.com/tools/textile/") + ")"
-        %td=f.text_area :information
-      %tr
-        %td
-          %b Rules Page:
-          (Uses 
-          =link_to("Textile", "http://www.textism.com/tools/textile/") + ")"
-        %td=f.text_area :rules
-      %tr
-        %td{:colspan => 2}
-          = f.submit "Save Changes"

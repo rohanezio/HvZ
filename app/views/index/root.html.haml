@@ -1,16 +1,18 @@
 %div.span-16.gameinfo
-  %h2.dink Game Information
-  =RedCloth.new(@current_game.information).to_html.html_safe
+  %iframe{:style => "margin-top:-10px;width:100%; height:700px; overflow:hidden; ", :src => "https://docs.google.com/document/d/e/2PACX-1vRM5pwPGpNc8SbfU5UgwpBbqRdEBeNUTtXdFLjfJZoVUb0aJshzNQ7uMHylBINpfWds8tiROBPmlVMh/pub?embedded=true"}
+  %iframe{:style => "float:center;padding-bottom:10px", :allow => "accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture", :allowfullscreen => "", :frameborder => "0", :height => "315", :src => "https://www.youtube.com/embed/video series?list=PLtnGZaowwEuB4Nprzm697hHzbON7Mu1Yk", :width => "560"}
+
 %div.span-5.last.quickstats
   - unless @current_game.id.nil?
     %h2.dink Game Status
     %table
       = render 'games/gamestats', game: @current_game
-  %h3{:style => "float:left;"}
-    Zombie Quota:
-  %h3{:style => "float:left;"}
-    Ammo Cap:
-  %h2.dink{:style => "float:left;"} 
+      %tr
+        %td{:style => "font-weight:bold;"} Zombie Quota:
+      %tr
+        %td{:style => "font-weight:bold;"} Ammo Cap:
+  
+  %h2.dink 
     Recent Updates
   %ul
   - @items[0,5].each do |i|
@@ -18,6 +20,7 @@
       %li= tag_text(i)
     - if i.is_a?(CheckIn)
       %li= checkin_text(i)
+  %br/	
   %h2.dink 
     Sponsors
   =image_tag 'bgc_logo_small.png', :width=>'125'
