@@ -7,6 +7,7 @@ class ContactMessagesController < ApplicationController
   end
 
   def create
+    params.permit!
     @new = ContactMessage.new(params[:contact_message])
     @new.game = @current_game
 

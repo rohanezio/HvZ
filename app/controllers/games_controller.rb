@@ -18,7 +18,7 @@ class GamesController < ApplicationController
 
     @game = Game.where(id: params[:id]).
       includes(squads: :registrations, registrations: [
-        :taggedby, :tagged, :feeds, :game, :person, :infractions,
+        :taggedby, :tagged, :game, :person, :infractions,
         :missions, :bonus_codes,
       ]).first
     @squads = @game.squads.select { |x| x.registrations.length >= 2 }.
@@ -57,6 +57,7 @@ class GamesController < ApplicationController
   end
 
   def create
+    params.permit!
     @game = Game.new(params[:game])
     if Game.current.id.nil?
       @game.is_current = true
@@ -69,6 +70,7 @@ class GamesController < ApplicationController
       redirect_to :action => :new
     end
   end
+  
 
   def update
     @game = Game.find(params[:id])

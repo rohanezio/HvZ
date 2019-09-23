@@ -8,9 +8,8 @@
 @include blueprint;
 
 html, body {
-  @include background-image(linear-gradient(top, color-stops(mix($hvz-green,$bgcolor, 25%), $bgcolor 20%, $bgcolor)));
   background-repeat: no-repeat;
-  background-color: $bgcolor;
+  background-color: #000000;
 }
 
 .container {

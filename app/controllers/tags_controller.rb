@@ -9,7 +9,7 @@ class TagsController < ApplicationController
     end
     @tag = Tag.new
     @zombies = Registration.where(:game_id => @current_game, :faction_id => 1).
-      includes(:tagged, :taggedby, :feeds, :missions, :person).
+      includes(:tagged, :taggedby, :missions, :person).
       sort_by { |x| [ (x.time_until_death / 1.hour).ceil, -x.tagged.length ] }
 
     if @is_admin
@@ -57,23 +57,6 @@ class TagsController < ApplicationController
       redirect_to new_tag_url()
       return
     end
-    # Now that the tag has saved, let's process the extra feeds!
-    @feed1 = Feed.new
-    @feed2 = Feed.new
-
-    unless @tag.feed_1.empty?
-      @feed1.tag = @tag
-      @feed1.registration_id = @tag.feed_1
-      @feed1.datetime = @tag.datetime
-      @feed1.save()
-    end
-
-    unless @tag.feed_2.empty?
-      @feed2.tag = @tag
-      @feed2.registration_id = @tag.feed_2
-      @feed2.datetime = @tag.datetime
-      @feed2.save()
-    end
-    Delayed::Job.enqueue SendNotification.new(:tag, @tag, @feed1, @feed2)
+    Delayed::Job.enqueue SendNotification.new(:tag, @tag)
   end
 end

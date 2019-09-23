@@ -6,7 +6,11 @@
     %h2.dink Game Status
     %table
       = render 'games/gamestats', game: @current_game
-  %h2.dink 
+  %h3{:style => "float:left;"}
+    Zombie Quota:
+  %h3{:style => "float:left;"}
+    Ammo Cap:
+  %h2.dink{:style => "float:left;"} 
     Recent Updates
   %ul
   - @items[0,5].each do |i|

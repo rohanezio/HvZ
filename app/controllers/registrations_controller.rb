@@ -25,6 +25,7 @@ class RegistrationsController < ApplicationController
   end
 
   def create
+    params.permit!
     @registration = Registration.
       where(person_id: @person, game_id: @current_game).
       first_or_initialize(params[:registration])

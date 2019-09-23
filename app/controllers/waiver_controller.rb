@@ -13,6 +13,7 @@ class WaiverController < ApplicationController
   end
 
   def create
+    params.permit!
     @logged_in_person.update_attributes(params[:person])
 
     if !@logged_in_person.legal_to_sign_waiver?

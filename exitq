@@ -1,0 +1,87 @@
+[1m[1;34mMinitest::Assertions#methods[0m[0m: 
+  _synchronize       assert_instance_of  assert_raises      capture_subprocess_io  pass               refute_instance_of  refute_same
+  assert             assert_kind_of      assert_respond_to  diff                   refute             refute_kind_of      skip       
+  assert_empty       assert_match        assert_same        exception_details      refute_empty       refute_match        skipped?   
+  assert_equal       assert_nil          assert_send        flunk                  refute_equal       refute_nil        
+  assert_in_delta    assert_operator     assert_silent      message                refute_in_delta    refute_operator   
+  assert_in_epsilon  assert_output       assert_throws      mu_pp                  refute_in_epsilon  refute_predicate  
+  assert_includes    assert_predicate    capture_io         mu_pp_for_diff         refute_includes    refute_respond_to 
+[1m[1;34mRails::Dom::Testing::Assertions::DomAssertions#methods[0m[0m: assert_dom_equal  assert_dom_not_equal
+[1m[1;34mRails::Dom::Testing::Assertions::SelectorAssertions#methods[0m[0m: assert_select  assert_select_email  assert_select_encoded  css_select
+[1m[1;34mRails::Dom::Testing::Assertions::TagAssertions#methods[0m[0m: assert_no_tag  assert_tag  find_all_tag  find_tag
+[1m[1;34mActionDispatch::Assertions::ResponseAssertions#methods[0m[0m: assert_redirected_to  assert_response
+[1m[1;34mActionDispatch::Assertions::RoutingAssertions#methods[0m[0m: 
+  assert_generates  assert_recognizes  assert_routing  [1;31mmethod_missing[0m  with_routing
+[1m[1;34mActionDispatch::Assertions#methods[0m[0m: html_document
+[1m[1;34mActionDispatch::Integration::RequestHelpers#methods[0m[0m: 
+  delete               get               patch               post_via_redirect  request_via_redirect
+  delete_via_redirect  get_via_redirect  patch_via_redirect  put                xhr                 
+  follow_redirect!     head              post                put_via_redirect   xml_http_request    
+[1m[1;34mActionDispatch::TestProcess#methods[0m[0m: assigns  fixture_file_upload  flash  redirect_to_url  session
+[1m[1;34mActionController::ModelNaming#methods[0m[0m: convert_to_model  model_name_from_record_or_class
+[1m[1;34mActionDispatch::Routing::PolymorphicRoutes#methods[0m[0m: 
+  edit_polymorphic_path  edit_polymorphic_url  new_polymorphic_path  new_polymorphic_url  polymorphic_path  polymorphic_url
+[1m[1;34mActionDispatch::Routing::UrlFor#methods[0m[0m: url_for
+[1m[1;34mActionDispatch::Integration::Session#methods[0m[0m: 
+  accept   controller           default_url_options=  host   https!  redirect?     request         reset!    status_message
+  accept=  cookies              default_url_options?  host!  https?  remote_addr   request_count   response  url_options   
+  body     default_url_options  headers               host=  path    remote_addr=  request_count=  status  
+[1m[1;34m#<Module:0x00557997497120>#methods[0m[0m: 
+  admin_register_game_url                feed_url                         people_url                  
+  attendance_mission_url                 feeds_create_url                 person_url                  
+  attendance_url                         feeds_mission_url                points_mission_url          
+  attendances_url                        feeds_url                        rails_info_properties_url   
+  autocomplete_person_name_missions_url  find_registration_by_code_url    rails_info_routes_url       
+  bonus_code_url                         game_url                         rails_info_url              
+  bonus_codes_url                        games_url                        rails_mailers_url           
+  check_in_url                           heatmap_game_url                 registration_infraction_url 
+  check_in_wizard_url                    join_squad_url                   registration_infractions_url
+  check_ins_url                          list_contact_messages_url        registration_showwaiver_url 
+  claim_bonus_code_url                   list_missions_url                registration_url            
+  contact_message_url                    mission_url                      registrations_url           
+  contact_messages_url                   missions_url                     root_url                    
+  contact_url                            new_attendance_url               rules_game_url              
+  edit_attendance_url                    new_bonus_code_url               sign_waiver_url             
+  edit_bonus_code_url                    new_contact_message_url          squad_url                   
+  edit_contact_message_url               new_feed_url                     squads_url                  
+  edit_feed_url                          new_game_url                     submit_bonus_code_url       
+  edit_game_url                          new_mission_url                  tag_url                     
+  edit_mission_url                       new_person_url                   tags_url                    
+  edit_person_url                        new_registration_infraction_url  text_game_url               
+  edit_registration_infraction_url       new_registration_url             tools_game_url              
+  edit_registration_url                  new_tag_url                      tree_game_url               
+  edit_tag_url                           people_login_url                 update_current_games_url    
+  emails_game_url                        people_logout_url                waivers_url                 
+[1m[1;34m#<Module:0x005579974970f8>#methods[0m[0m: 
+  admin_register_game_path                feed_path                         people_path                  
+  attendance_mission_path                 feeds_create_path                 person_path                  
+  attendance_path                         feeds_mission_path                points_mission_path          
+  attendances_path                        feeds_path                        rails_info_path              
+  autocomplete_person_name_missions_path  find_registration_by_code_path    rails_info_properties_path   
+  bonus_code_path                         game_path                         rails_info_routes_path       
+  bonus_codes_path                        games_path                        rails_mailers_path           
+  check_in_path                           heatmap_game_path                 registration_infraction_path 
+  check_in_wizard_path                    join_squad_path                   registration_infractions_path
+  check_ins_path                          list_contact_messages_path        registration_path            
+  claim_bonus_code_path                   list_missions_path                registration_showwaiver_path 
+  contact_message_path                    mission_path                      registrations_path           
+  contact_messages_path                   missions_path                     root_path                    
+  contact_path                            new_attendance_path               rules_game_path              
+  edit_attendance_path                    new_bonus_code_path               sign_waiver_path             
+  edit_bonus_code_path                    new_contact_message_path          squad_path                   
+  edit_contact_message_path               new_feed_path                     squads_path                  
+  edit_feed_path                          new_game_path                     submit_bonus_code_path       
+  edit_game_path                          new_mission_path                  tag_path                     
+  edit_mission_path                       new_person_path                   tags_path                    
+  edit_person_path                        new_registration_infraction_path  text_game_path               
+  edit_registration_infraction_path       new_registration_path             tools_game_path              
+  edit_registration_path                  new_tag_path                      tree_game_path               
+  edit_tag_path                           people_login_path                 update_current_games_path    
+  emails_game_path                        people_logout_path                waivers_path                 
+[1m[1;34m#<Module:0x005579976d4230>#methods[0m[0m: _routes
+[1m[1;34mActionDispatch::Routing::RouteSet::MountedHelpers#methods[0m[0m: _main_app  main_app
+[1m[1;34mself.methods[0m[0m: __pry__
+[1m[1;34minstance variables[0m[0m: 
+  [0;34m@_mock_session[0m  [0;34m@accept[0m  [0;34m@controller[0m  [0;34m@https[0m                    [0;34m@remote_addr[0m  [0;34m@request_count[0m  [0;34m@url_options[0m
+  [0;34m@_routes[0m        [0;34m@app[0m     [0;34m@host[0m        [0;34m@named_routes_configured[0m  [0;34m@request[0m      [0;34m@response[0m     
+[1m[1;34mlocals[0m[0m: _  __  _dir_  _ex_  _file_  _in_  _out_  _pry_

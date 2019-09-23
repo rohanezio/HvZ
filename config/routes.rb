@@ -2,13 +2,12 @@ Hvz::Application.routes.draw do
   get "check_ins" => "check_ins#index"
   get "check_ins/new", :as => "check_in_wizard"
   get "check_ins/create", :as => "check_in"
-  get "feeds/create"
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
   match "/people/login/", to: "people#login", via: :all
   match "/people/logout/", to: "people#logout", via: :all
-  resources :people, :tags, :feeds
+  resources :people, :tags
   resources :attendances
   get "bonus_codes/claim" => "bonus_codes#claim", :as => "claim_bonus_code"
   put "bonus_codes/claim" => "bonus_codes#claim_submit", :as => "submit_bonus_code"
@@ -21,7 +20,6 @@ Hvz::Application.routes.draw do
 
     member do
       get 'attendance'
-      get 'feeds'
       get 'points'
       post 'points' => 'missions#save_points'
     end
