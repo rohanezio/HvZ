@@ -25,7 +25,6 @@ class RegistrationsController < ApplicationController
   end
 
   def create
-    params.permit!
     @registration = Registration.
       where(person_id: @person, game_id: @current_game).
       first_or_initialize(params[:registration])
@@ -88,6 +87,7 @@ class RegistrationsController < ApplicationController
   end
 
   def update
+    params.permit!
     r = Registration.find(params[:id])
 
     if !@is_admin && r.person != @logged_in_person
