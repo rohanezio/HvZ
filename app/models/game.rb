@@ -15,7 +15,7 @@ class Game < ActiveRecord::Base
   end
 
   def hours_to_starve
-    48
+    250
   end
 
   def to_s(type=nil)
@@ -107,7 +107,7 @@ class Game < ActiveRecord::Base
       if now >= (Time.now + 48.hours)
         break
       end
-      @data[now] = {:zombies => 0, :deceased => 0, :humans=>0}
+      @data[now] = {:zombies => 0,  :humans=>0}
       states.each do |s|
         # States is a hash of important times of players. Like
         # state = {:human => [time became human], :zombie => [time zombified],
@@ -115,10 +115,6 @@ class Game < ActiveRecord::Base
         # So, determining who is at which state is now pretty easy.
         if s[:human] <= now
           if s[:zombie] <= now
-            if s[:deceased] <= now
-              @data[now][:deceased] += 1
-              next
-            end
             @data[now][:zombies] += 1
             next
           end
@@ -134,9 +130,6 @@ class Game < ActiveRecord::Base
         x < Time.now,
         y[:zombies],
         # Certainty of the Zombie points:
-        x < Time.now,
-        y[:deceased],
-        # Certainty of the Deceased points:
         x < Time.now,
       ]
     end

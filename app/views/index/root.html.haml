@@ -20,7 +20,17 @@
       %li= tag_text(i)
     - if i.is_a?(CheckIn)
       %li= checkin_text(i)
-  %br/	
+  %br/
+  %h2.dink Relevant Links
+  %table
+    %tr
+      %td
+      %a{:href => "casehvz.com/squads", :style => "text-align:left;text-decoration:none;font-weight:bold;"} Squad Rosters
+    %br/
+    %tr
+      %td
+      %a{:href => "casehvz.com/caches", :style => "text-align:left;text-decoration:none;font-weight:bold;"} Cache Codes
+	
   %h2.dink 
     Sponsors
   =image_tag 'bgc_logo_small.png', :width=>'125'

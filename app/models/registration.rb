@@ -15,12 +15,10 @@ class Registration < ActiveRecord::Base
 
   HUMAN_FACTION = 0
   ZOMBIE_FACTION = 1
-  DECEASED_FACTION = 2
 
   FACTION_NAMES = {
     HUMAN_FACTION => 'human',
     ZOMBIE_FACTION => 'zombie',
-    DECEASED_FACTION => 'deceased',
   }
 
   validates_uniqueness_of :person_id, :scope => :game_id
@@ -29,7 +27,6 @@ class Registration < ActiveRecord::Base
 
   before_validation :set_card_code
 
-  HUMAN_TYPES = ["Military", "Resistance", "Defected"]
 
   def self.make_code
     chars = %w{ A B C D E F 1 2 3 4 5 6 7 8 9 }
@@ -124,9 +121,6 @@ class Registration < ActiveRecord::Base
     return [zombietime, feedtime, tagtime].max
   end
 
-  def time_until_death
-    return (self.most_recent_feed + 48.hours) - Time.now
-  end
 
   def is_human?
     # A player is human if and only if they have not been tagged in game (i.e. outside a mission)
@@ -139,15 +133,7 @@ class Registration < ActiveRecord::Base
     return (!self.killing_tag.nil? and self.most_recent_feed + 48.hours >= Game.now(self.game))
   end
 
-  def is_deceased?
-    # A player is deceased if they are not human and not a zombie.
-    return (!self.is_human? and !self.is_zombie?)
-  end
 
-  def is_recently_deceased?
-    # If the player has died in the past 2 hours
-    is_deceased? && (Game.now(self.game) - self.state_history[:deceased]) < 2.hours
-  end
 
   def state_history
     # Returns the times at which the human transitioned between factions, according to the
@@ -158,19 +144,14 @@ class Registration < ActiveRecord::Base
     human_time = self.game.game_begins
     tag = self.killing_tag
     zombie_time = self.game.game_ends
-    deceased_time = self.game.game_ends
     if self.is_oz
       zombie_time = self.game.game_begins
-      if self.game.ozs_revealed?
-        deceased_time = [self.game.game_begins, self.most_recent_feed].max + 48.hours
-      end
     end
     if not tag.nil?
       zombie_time = tag.datetime + 1.hour
-      deceased_time = self.most_recent_feed + 48.hours
     end
 
-    { :human => human_time, :zombie => zombie_time, :deceased => deceased_time }
+    { :human => human_time, :zombie => zombie_time}
   end
 
   def state_at(time = Game.now(game))
@@ -178,7 +159,6 @@ class Registration < ActiveRecord::Base
 
     return :human if (history[:human]..history[:zombie]).cover?(time)
     return :zombie if (history[:zombie]..history[:deceased]).cover?(time)
-    return :deceased if history[:deceased] < time
     return :unknown
   end
 

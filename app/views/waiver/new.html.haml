@@ -15,7 +15,7 @@
               = g.label :date_of_birth, 'Date Of Birth:'
             %td
               = g.date_select :date_of_birth, order: [:month, :day, :year],
-                start_year: 1940, end_year: Time.now.year-14
+                start_year: 1960, end_year: Time.now.year-14
     %div.span-1
     %div.span-10
       =f.label :studentid, "Student ID:"
@@ -23,7 +23,7 @@
     %div.span-22.last.clear
       I,
       %b=@logged_in_person.name
-      am participating in the Big Games Club's Humans vs Zombies game on Friday, March 24 – Friday, March 31, 2017 all day. My participation may include some risks. I am aware of the risks that may be encountered during this program and I understand that the risks may include personal injury and damage to property.
+      am participating in the Big Games Club's Humans vs Zombies game on Wednesday, Oct 2 – Friday, Oct 11, 2019 all day. My participation may include some risks. I am aware of the risks that may be encountered during this program and I understand that the risks may include personal injury and damage to property.
       %br
       I have been informed of risks that may be encountered during this program and if I have any questions about the activity's content, nature, risks or hazards, I have contacted the activity's coordinator and have discussed those questions to my satisfaction. I understand that my participation in this activity does not require travel but consists of game play on Case Western Reserve University’s campus and may involve exposure to risk of personal injury or damage to property.
 
@@ -71,4 +71,4 @@
               %td=f.text_field :emergencyphone
     %div.span-22
       =f.submit "Onwards! (Continue Registration Process)",
-        confirm: "Have you actually read the full rules? Please also show up to one of the rules meetings. Wednesday 3/22 or Thursday 3/23 in Schmitt!"
+        confirm: "Have you actually read the full rules? Please also show up to one of the rules meetings. Sat Sept 28 or Sun Sept 29 in Wade, Mon Sept 30 & Tue Oct 1 at Millis Schmitt!"

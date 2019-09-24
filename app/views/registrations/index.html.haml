@@ -9,7 +9,6 @@
       %th Full Name
       %th Case ID
       %th{style: "text-align:center"} Current Faction
-      %th{style: "text-align:center"} Human Type
       %th{style: "text-align:right"} Score
       %th{style: "text-align:center"} Wants OZ?
       %th{style: "text-align:center"} Waiver
@@ -32,7 +31,6 @@
               ="(OZ)" if r.is_oz
           %td=r.person.caseid
           %td{style: "text-align:center"}=faction_id_to_class_human(r)
-          %td{style: "text-align:center"}= r.human_type
           %td{style: "text-align:right"}=r.score
           %td{style: "text-align:center"}="Yes" if r.wants_oz
           %td{style: "text-align:center"}

@@ -25,9 +25,10 @@ h2 {
 }
 
 .heading {
-  background: image-url("logo_small.png") no-repeat -32px 0px;
+  background: image-url("logo_small.jpg") no-repeat 0px 30px; 
   margin: 20px auto 0px;
   text-align: center;
+  text-decoration:none;
 
   .navigation {
     background-color: $hvz-green;
