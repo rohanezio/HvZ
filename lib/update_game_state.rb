@@ -135,4 +135,3 @@ class UpdateGameState
         z.score += t.score
       end
     end
-  end
