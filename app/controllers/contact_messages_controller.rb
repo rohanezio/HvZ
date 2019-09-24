@@ -6,23 +6,6 @@ class ContactMessagesController < ApplicationController
     @contact_message = ContactMessage.new
   end
 
-  def create
-    params.permit!
-    @new = ContactMessage.new(params[:contact_message])
-    @new.game = @current_game
-
-    if @new.save
-      flash[:notice] = "Thank you for your feedback. An administrator will read your message shortly and we will take appropriate action."
-      redirect_to new_contact_message_url
-    else
-      flash[:error] = @new.errors.full_messages.first
-      # TODO: Determine better way to maintain the input in the fields than copy & pasting the code
-      # from contact_messages#new
-      @admins = Person.find_all_by_is_admin(true)
-      @contact_message = ContactMessage.new(params[:contact_message])
-      render :new
-    end
-
   end
 
   def list
@@ -31,17 +14,6 @@ class ContactMessagesController < ApplicationController
     else
       @messages = @current_game.contact_messages.order('created_at DESC')
     end
-  end
-
-  def destroy
-    @message = ContactMessage.find(params[:id])
-    @message.visible = false
-    @message.save()
-    redirect_to list_contact_messages_url()
-  end
-
-  def edit
-    @contact_message = ContactMessage.find(params[:id])
   end
 
   def update
