@@ -6,8 +6,6 @@ class ContactMessagesController < ApplicationController
     @contact_message = ContactMessage.new
   end
 
-  end
-
   def list
     if params[:all].nil?
       @messages = @current_game.contact_messages.where(visible: true).order('created_at DESC')
