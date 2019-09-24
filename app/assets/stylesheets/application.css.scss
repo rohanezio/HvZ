@@ -28,11 +28,11 @@ h2 {
   background: image-url("logo_small.jpg") no-repeat 0px 30px; 
   margin: 20px auto 0px;
   text-align: center;
-  text-decoration:none;
 
   .navigation {
     background-color: $hvz-green;
     clear: both;
+    text-decoration:none;
     font-size: 1.4em;
     height: 30px;
     list-style-type: none;
