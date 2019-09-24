@@ -34,8 +34,8 @@
               = render 'index/userloggedin'
             - else
               = link_to 'Login', people_login_url
-        %ul.navigation{:style => "text-decoration:none;"}
-          %li.span-4
+        %ul.navigation
+          %li.span-4{:style => "text-decoration:none;"}
             = link_to "Home", root_url
           %li.span-4
             - if not @current_game.id.nil?
