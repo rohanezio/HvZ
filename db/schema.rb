@@ -48,17 +48,6 @@ ActiveRecord::Schema.define(version: 20140325043306) do
     t.datetime "updated_at"
   end
 
-  create_table "contact_messages", force: :cascade do |t|
-    t.string   "from"
-    t.string   "regarding"
-    t.text     "body"
-    t.datetime "occurred"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.integer  "game_id"
-    t.boolean  "visible",    default: true
-    t.text     "note"
-  end
 
   create_table "delayed_jobs", force: :cascade do |t|
     t.integer  "priority",   default: 0
@@ -85,8 +74,6 @@ ActiveRecord::Schema.define(version: 20140325043306) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.boolean  "is_current"
-    t.text     "information",         default: "No information given."
-    t.text     "rules",               default: "No rules have been posted yet. Check back later!"
     t.string   "time_zone",           default: "Eastern Time (US & Canada)"
     t.datetime "oz_reveal"
   end
@@ -110,7 +97,6 @@ ActiveRecord::Schema.define(version: 20140325043306) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "title"
-    t.text     "storyline"
   end
 
   create_table "people", force: :cascade do |t|
