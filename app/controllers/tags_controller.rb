@@ -13,9 +13,11 @@ class TagsController < ApplicationController
       sort_by { |x| [ (x.time_until_death / 1.hour).ceil, -x.tagged.length ] }
 
     if @is_admin
-      #@humans = Registration.find_all_by_game_id_and_faction_id(@current_game.id, 0, :include=>[:person]).sort{|x,y| x.card_code <=> y.card_code}
-      #@humans.collect{|x| not x.is_oz}.compact
+      @humans = Registration.find_all_by_game_id_and_faction_id(@current_game.id, 0, :include=>[:person]).sort{|x,y| x.card_code <=> y.card_code}
+      @humans.collect{|x| not x.is_oz}.compact
 
+      # Add all the deceased zombies.
+      @zombies.concat(Registration.find_all_by_game_id_and_faction_id(@current_game.id, 2))
     end
 
     @zombiebox = @zombies.map do |x|
@@ -29,6 +31,7 @@ class TagsController < ApplicationController
 
   def create
     #TODO: This is really ugly.
+    params.permit!
     @tag = Tag.new(params[:tag])
     @tag.game = @current_game
     if @tag.tagee_id.nil?
