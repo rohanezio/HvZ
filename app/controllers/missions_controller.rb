@@ -9,7 +9,7 @@ class MissionsController < ApplicationController
   def attendance
     params.permit!
     @mission = Mission.where(params[:id], include: { game: { registrations: :person } })
-    @game = @mission.game
+    @game = @current_game
   end
 
   def feeds
