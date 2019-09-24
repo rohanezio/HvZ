@@ -87,7 +87,6 @@ class RegistrationsController < ApplicationController
   end
 
   def update
-    params.permit!
     r = Registration.find(params[:id])
 
     if !@is_admin && r.person != @logged_in_person
@@ -95,6 +94,7 @@ class RegistrationsController < ApplicationController
       redirect_to root_url()
     end
 
+    params.permit!
     r.attributes = params[:registration]
     r.save(validate: !@is_admin) # if admin, then don't validate.
 
