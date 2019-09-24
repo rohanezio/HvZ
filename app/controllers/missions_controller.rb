@@ -72,6 +72,7 @@ class MissionsController < ApplicationController
   end
 
   def points
+    params.permit!
     @mission = Mission.find(params[:id], :include => {
       :attendances => { :registration => [:person, :game, :taggedby, :tagged, :feeds]}
     })
