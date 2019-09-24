@@ -7,6 +7,7 @@ class MissionsController < ApplicationController
   end
 
   def attendance
+    params.permit!
     @mission = Mission.find(params[:id], include: { game: { registrations: :person } })
     @game = @mission.game
   end
