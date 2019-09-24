@@ -134,3 +134,4 @@ class UpdateGameState
       end
     end
   end
+end
