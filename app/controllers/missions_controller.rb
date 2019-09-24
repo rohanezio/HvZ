@@ -38,6 +38,13 @@ class MissionsController < ApplicationController
     end
   end
 
+  def destroy
+    @mission = Mission.find(params[:id])
+    @mission.destroy if @mission
+
+    redirect_to missions_url
+  end
+
   def index
     @missions = @current_game.missions.order(:start)
   end
