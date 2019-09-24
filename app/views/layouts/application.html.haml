@@ -34,7 +34,7 @@
               = render 'index/userloggedin'
             - else
               = link_to 'Login', people_login_url
-        %ul.navigation{style: "text-decoration:none;"}
+        %ul.navigation{:style => "text-decoration:none;"}
           %li.span-4
             = link_to "Home", root_url
           %li.span-4
