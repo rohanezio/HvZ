@@ -28,7 +28,6 @@ class UpdateGameState
 
     @zombie_faction = @players.select(&:is_zombie?)
 
-    @deceased_faction = @players.select(&:is_deceased?)
 
     @players.each {|x| x.score = 0} # Reset the scores
     calculate_mission_scores(@players)
@@ -39,16 +38,14 @@ class UpdateGameState
     factions = {
       :human => @human_faction,
       :zombie => @zombie_faction,
-      :deceased => @deceased_faction
     }
 
     update_faction_cache(factions)
-    update_forums(factions)
 
     # We have to override validation because the registrations are generally not changable
     # acollectfter registration ends.
     changed = false
-    [@human_faction, @zombie_faction, @deceased_faction].flatten.each do |x|
+    [@human_faction, @zombie_faction].flatten.each do |x|
       if x.changed?
         x.save(:validate => false)
         changed = true
@@ -58,41 +55,6 @@ class UpdateGameState
     Delayed::Job.enqueue(UpdateGameState.new(),{ :run_at => Time.now + 1.minute })
   end
 
-  def update_forums(factions)
-    return unless forums_reachable?
-
-    factions[:military] = factions[:human].select { |r| r.human_type == 'Military' }
-    factions[:resistance] = factions[:human].select { |r| r.human_type != 'Military' }
-    params = {}
-    params[:zombie] = factions[:zombie].map { |r| r.person.caseid }.join(',')
-    params[:human] = factions[:human].map { |r| r.person.caseid }.join(',')
-    params[:military] = factions[:military].map{ |r| r.person.caseid }.join(',')
-    params[:resistance] = factions[:resistance].map{ |r| r.person.caseid }.join(',')
-    params[:core] = Person.where(is_admin: true).pluck(:caseid).join(',')
-
-    uri = URI.parse(FORUMS_URI)
-    http = Net::HTTP.new(uri.host, uri.port)
-
-    request = Net::HTTP::Post.new(uri.request_uri)
-    request.set_form_data(params.merge(api_key: 'fa7eb9f91ac0dee653d991f9b44f72f8f05421a157b00369162aa978d30d56a4'))
-
-    http.request(request)
-  end
-
-  def forums_reachable?
-    begin
-      uri = URI.parse(FORUMS_URI)
-      http = Net::HTTP.new(uri.host, uri.port)
-
-      request = Net::HTTP::Get.new(uri.request_uri)
-      http.request(request)
-    rescue Errno::ECONNRESET => e
-      Rails.logger.error "Failed to update forums. Exception message: #{e.message}"
-      false
-    else
-      true
-    end
-  end
 
   def update_faction_cache(factions)
     factions[:human].each do |h|
@@ -105,25 +67,10 @@ class UpdateGameState
         Delayed::Job.enqueue SendNotification.new(h.person,
           "Welcome to the horde. Wear your headband with pride! Zombie Chant: What do we want? Brains! When do we want it? Brains!")
       end
-      if h.faction_id == 2
-        Delayed::Job.enqueue SendNotification.new(h.person,
-          "Due to an error in the site, you were mistakenly marked as \"deceased\"." +
-          "You are no longer deceased and should continue playing as a zombie until further notice. Sorry!")
-      end
 
       h.faction_id = 1
     end
 
-    factions[:deceased].each do |h|
-      if h.faction_id == 1
-        Delayed::Job.enqueue SendNotification.new(h.person,
-          "Sorry, but your status has become \"deceased\". You are now out of the" +
-          "game until the Final Mission. If this is a mistake (e.g. because of a mission)," +
-          "it should be fixed shortly. Otherwise, we'll see you at the final mission!")
-      end
-
-      h.faction_id = 2
-    end
   end
 
   def calculate_human_scores(all_players)

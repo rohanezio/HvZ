@@ -10,7 +10,4 @@
       Ends (approximate):
     %td
       =date_humanize(@mission.end)
-%h3.dink
-  Mission Details:
-%div{:align=>"left"}
-  =RedCloth.new(@mission.description).to_html.html_safe
+%iframe{:style => "margin-top:-10px;width:100%; height:700px; overflow:hidden; ", :src => "https://docs.google.com/document/d/e/2PACX-1vRM5pwPGpNc8SbfU5UgwpBbqRdEBeNUTtXdFLjfJZoVUb0aJshzNQ7uMHylBINpfWds8tiROBPmlVMh/pub?embedded=true"}
