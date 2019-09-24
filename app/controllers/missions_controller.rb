@@ -26,6 +26,7 @@ class MissionsController < ApplicationController
   end
 
   def create
+    params.permit!
     @mission = Mission.new(params[:mission])
     @mission.game = @current_game
     if @mission.save
