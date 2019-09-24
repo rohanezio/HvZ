@@ -100,10 +100,8 @@ class UpdateGameState
         Delayed::Job.enqueue SendNotification.new(h.person,
           "Welcome to the horde. Wear your headband with pride! Zombie Chant: What do we want? Brains! When do we want it? Brains!")
       end
-
       h.faction_id = 1
     end
-
   end
 
   def calculate_human_scores(all_players)
