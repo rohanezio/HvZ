@@ -9,7 +9,7 @@
       var players = #{render 'shared/player_list', game: @game, mission: @mission},
           attendingPlayers = new HvZ.AttendingPlayers({
             players: players,
-            missionId: #{@mission.id},
+            missionId: #{@mission.mission_id},
           });
     });
 :css
@@ -23,8 +23,6 @@
   %b <%= humans.length %>
   | Zombies:
   %b <%= zombies.length %>
-  | Deceased:
-  %b <%= deceased.length %>
   %br
   %br
   %ol
