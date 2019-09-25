@@ -41,7 +41,7 @@
               - else
                 = link_to 'Registration', new_registration_url
           %li.span-4
-             %a{:style => "text-decoration:none;font-weight:bold;":href => missions_url} Missions
+            %a{:style => "text-decoration:none;font-weight:bold;":href => missions_url} Missions
           %li.span-4
             = link_to "Report A Tag", new_tag_url unless @current_game.nil?
           - unless @current_game.id.nil?
