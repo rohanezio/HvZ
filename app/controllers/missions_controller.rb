@@ -60,8 +60,8 @@ class MissionsController < ApplicationController
 
   def points
     params.permit!
-    @mission = Mission.find(params[:id], :include => {
-      :attendances => { :registration => [:person, :game, :taggedby, :tagged, :feeds]}
+    @mission = Mission.find_by(params[:id], :include => {
+      :attendances => { :registration => [:person, :game, :taggedby, :tagged]}
     })
     @player_factions = Hash.new([]).merge(
       @mission.attendances.group_by { |a| a.registration.state_at(@mission.start) }
