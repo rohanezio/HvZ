@@ -24,6 +24,7 @@ class BonusCodesController < ApplicationController
   end
 
   def create
+    params.permit!
     @code = BonusCode.new(params[:bonus_code])
     @code.code = @code.code.upcase
     @code.game = @current_game
