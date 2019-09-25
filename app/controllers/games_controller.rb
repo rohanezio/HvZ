@@ -68,6 +68,7 @@ class GamesController < ApplicationController
   end
   
   def update
+    params.permit!
     @game = Game.find(params[:id])
     if @game.update_attributes(params[:game])
       redirect_to :action => :edit
