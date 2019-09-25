@@ -24,7 +24,6 @@
   | Zombies:
   %b <%= zombies.length %>
   %br
-  %br
   %ol
     <% _.each(players, function(p) { %>
     %li <%= p.get('name') %> [ <a href='#' class='delete-attendance' data-attendance=<%= p.get('attendance') %>>x</a> ]
