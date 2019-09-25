@@ -2,6 +2,7 @@ class AttendancesController < ApplicationController
   before_filter :check_admin
 
   def create
+    params.permit!
     @attendance = Attendance.new(params[:attendance])
     @attendance.save
     render json: @attendance
