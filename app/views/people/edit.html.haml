@@ -19,6 +19,10 @@
           %td
             %b Phone Number (for SMS)*:
           %td= f.text_field :phone
+        %tr
+          %td
+            %b Pronouns:
+          %td= f.text_field :pronouns
         -if @is_admin
           %tr
             %td.admin

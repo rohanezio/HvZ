@@ -3,6 +3,5 @@ class ContactMessagesController < ApplicationController
 
   def new
     @admins = Person.where(is_admin: true)
-    @contact_message = ContactMessage.new
   end
 end

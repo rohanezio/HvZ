@@ -4,12 +4,11 @@ class PeopleController < ApplicationController
 
   def update
     @person = Person.find(params[:id]) or Person.new
-
     if !@logged_in_person.can_edit?(@person)
       flash[:error] = "You do not have permissions to edit this person's details."
       return redirect_to root_url
     end
-
+    @person.update_attribute(:pronouns, params[:person][:pronouns])
     # Protect against name changes
     if params[:person][:name] != @person.name
       if @is_admin || @person.can_change_name?
@@ -23,7 +22,6 @@ class PeopleController < ApplicationController
     params[:person].delete(:name)
 
     @person.update_attributes(params[:person])
-
     if @is_admin and not params[:person][:is_admin].nil?
       # This has to be done separately because we need to ensure that the person granting
       # admin access is an admin themselves.

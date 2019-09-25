@@ -48,18 +48,6 @@ ActiveRecord::Schema.define(version: 20140325043306) do
     t.datetime "updated_at"
   end
 
-  create_table "contact_messages", force: :cascade do |t|
-    t.string   "from"
-    t.string   "regarding"
-    t.text     "body"
-    t.datetime "occurred"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.integer  "game_id"
-    t.boolean  "visible",    default: true
-    t.text     "note"
-  end
-
   create_table "delayed_jobs", force: :cascade do |t|
     t.integer  "priority",   default: 0
     t.integer  "attempts",   default: 0
@@ -91,16 +79,6 @@ ActiveRecord::Schema.define(version: 20140325043306) do
     t.datetime "oz_reveal"
   end
 
-  create_table "infractions", force: :cascade do |t|
-    t.integer  "registration_id"
-    t.text     "reason"
-    t.integer  "admin_id"
-    t.integer  "severity"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.boolean  "nullified",       default: false
-  end
-
   create_table "missions", force: :cascade do |t|
     t.integer  "game_id"
     t.datetime "start"
@@ -123,6 +101,7 @@ ActiveRecord::Schema.define(version: 20140325043306) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.date     "date_of_birth"
+    t.string   "pronouns"
   end
 
   create_table "registrations", force: :cascade do |t|
@@ -137,7 +116,6 @@ ActiveRecord::Schema.define(version: 20140325043306) do
     t.boolean  "wants_oz",      default: false
     t.boolean  "is_off_campus", default: false
     t.integer  "squad_id"
-    t.string   "human_type"
   end
 
   create_table "squads", force: :cascade do |t|
