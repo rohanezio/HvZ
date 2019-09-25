@@ -54,11 +54,11 @@
         - if @is_admin
           %ul.admin
             %li.span-4
-              = link_to 'Manage Games', games_url
+               %a{:style => "text-decoration:none;font-weight:bold;", :href => games_url} Manage Games
             %li.span-4
-              = link_to 'Manage Players', registrations_url
+              %a{:style => "text-decoration:none;font-weight:bold;", :href => registrations_url} Manage players
             %li.span-4
-              = link_to 'Manage Missions', list_missions_url
+              %a{:style => "text-decoration:none;font-weight:bold;", :href => list_missions_url} Manage Missions
             %li.span-4
               = link_to "Game Tools", tools_game_path(Game.current)
             %li.span-4.dink.hvzcore.last
