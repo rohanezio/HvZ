@@ -9,7 +9,7 @@
       var players = #{render 'shared/player_list', game: @game, mission: @mission},
           attendingPlayers = new HvZ.AttendingPlayers({
             players: players,
-            missionId: #{@mission.mission_id},
+            missionId: @mission.mission_id,
           });
     });
 :css
