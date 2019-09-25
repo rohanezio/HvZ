@@ -46,7 +46,7 @@
             = link_to "Report A Tag", new_tag_url unless @current_game.nil?
           - unless @current_game.id.nil?
             %li.span-4
-              = link_to "Rules", rules_game_url(@current_game)
+              %a{:style => "text-decoration:none;font-weight:bold;", :href => rules_game_url(@current_game)} Rules
           %li.span-4.last
             %a{:style => "text-decoration:none;font-weight:bold;", :href => new_contact_message_url} Contact Admins
         - if @is_admin
