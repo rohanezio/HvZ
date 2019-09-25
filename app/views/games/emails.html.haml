@@ -5,9 +5,6 @@
   = label_tag :faction_id, "Faction:"
   = select_tag :faction_id, options_for_select([["Human", 0], ["Zombies", 1], ["Deceased", 2]], params[:faction_id]),
     include_blank: true
-  = label_tag :human_type, "Human Type:"
-  = select_tag :human_type, options_for_select(Registration::HUMAN_TYPES, params[:human_type]),
-    include_blank: true
   = submit_tag "Submit"
 
 = @registrations.map { |r| "#{r.person.name} <#{r.person.caseid}@case.edu>" }.join ','
