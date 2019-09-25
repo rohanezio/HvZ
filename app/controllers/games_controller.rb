@@ -25,10 +25,6 @@ class GamesController < ApplicationController
                 sort_by(&:points).reverse.first(5)
   end
 
-  def rules
-    @game = Game.find(params[:id]) || @current_game
-  end
-
   def tree
     @game = Game.find(params[:id]) || @current_game
 
@@ -71,7 +67,6 @@ class GamesController < ApplicationController
     end
   end
   
-
   def update
     @game = Game.find(params[:id])
     if @game.update_attributes(params[:game])
@@ -102,30 +97,6 @@ class GamesController < ApplicationController
     @registrations = @registrations.includes(:person)
   end
 
-  def text
-    @game = Game.find(params[:id])
-  end
-
-  def text_create
-    @game = Game.find(params[:id])
-    @registrations = @game.registrations
-    if params[:faction_id].present?
-      @registrations = @registrations.where(faction_id: params[:faction_id])
-    end
-
-    if params[:human_type].present?
-      @registrations = @registrations.where(human_type: params[:human_type])
-    end
-
-    if params[:mission].present?
-      @registrations = @registrations.joins(:missions).where(attendances: { mission_id: params[:mission] })
-    end
-    @registrations = @registrations.includes(:person)
-    messages = @registrations.map { |r| [r.person, params[:message]] }
-    flash[:message] = "Sent messages to #{@registrations.count} players"
-    Delayed::Job.enqueue SendNotification.new(messages)
-    redirect_to text_game_path(@game.id)
-  end
 
   def admin_register_new
     @game = Game.find(params[:id])
@@ -163,6 +134,4 @@ class GamesController < ApplicationController
 
   end
 
-  def tools
-  end
 end

@@ -12,19 +12,6 @@ class MissionsController < ApplicationController
     @game = @current_game
   end
 
-  def feeds
-    @mission = Mission.find(params[:id], :include => [:feeds, {:attendances => :registration}])
-    @feeds = @mission.feeds.includes(:registration => :person).sort_by(&:created_at).reverse
-    @all_zombies = Set.new(Registration.where(:game_id => @current_game.id).
-      includes(:game, :taggedby, :tagged, :feeds, :attendances, :person).
-      select{ |x| x.is_zombie? || x.is_recently_deceased? })
-    @present_zombies = @all_zombies & Set.new(@mission.attendances.map(&:registration))
-    @need_feeding = (@all_zombies - Set.new(@feeds.map(&:registration))).
-      sort_by{|x| [@present_zombies.include?(x) ? 0 : 1, (x.tagged.present? || x.attendances.present?) ? 0 : 1,
-                   x.state_history[:deceased], -x.score]}
-
-    @feed = Feed.new({:mission => @mission})
-  end
 
   def create
     params.permit!
