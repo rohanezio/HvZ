@@ -3,7 +3,7 @@
   = javascript_include_tag "backbone/collections/playerList"
   = javascript_include_tag "backbone/views/attendingPlayers"
   = javascript_include_tag "backbone/views/playerAutocomplete"
-
+  
   :javascript
     $(function() {
       var players = #{render 'shared/player_list', game: @game, mission: @mission},
@@ -23,6 +23,7 @@
   %b <%= humans.length %>
   | Zombies:
   %b <%= zombies.length %>
+  %br
   %br
   %ol
     <% _.each(players, function(p) { %>

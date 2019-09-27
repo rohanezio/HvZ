@@ -126,7 +126,7 @@ class RegistrationsController < ApplicationController
   end
 
   def showwaiver
-    @registration = Registration.find(params[:registration_id], include: { person: :waivers })
+    @registration = Registration.find(params[:registration_id])
     @waiver = @registration.person.waivers.where(game_id: @current_game).first
   end
 

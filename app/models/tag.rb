@@ -1,5 +1,4 @@
 class Tag < ActiveRecord::Base
-  has_many :feeds
   belongs_to :game
   belongs_to :admin, :class_name => "Person", :foreign_key => "admin_id"
   belongs_to :tagger, :foreign_key => "tagger_id", :class_name => "Registration"
@@ -7,8 +6,7 @@ class Tag < ActiveRecord::Base
 
   validate :validate
 
-  # TODO: Write code so additional feeds are scalable
-  attr_accessor :tagee_card_code, :award_points, :feed_1, :feed_2
+  attr_accessor :tagee_card_code, :award_points
 
   after_create :trigger_player_tagged
 

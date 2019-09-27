@@ -3,6 +3,7 @@ class WaiverController < ApplicationController
   before_filter :require_can_register
 
   def new
+    params.permit!
     @waiver = Waiver.new.tap do |w|
       w.person = @logged_in_person
 

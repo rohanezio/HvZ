@@ -18,7 +18,7 @@ class GamesController < ApplicationController
 
     @game = Game.where(id: params[:id]).
       includes(squads: :registrations, registrations: [
-        :taggedby, :tagged, :game, :person, :infractions,
+        :taggedby, :tagged, :game, :person,
         :missions, :bonus_codes,
       ]).first
     @squads = @game.squads.select { |x| x.registrations.length >= 2 }.

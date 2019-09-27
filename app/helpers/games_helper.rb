@@ -16,13 +16,10 @@ module GamesHelper
 
       [survived_string, cache_string, mission_string].compact.join('+').html_safe
     when Registration::ZOMBIE_FACTION
-      dies_in = (registration.time_until_death / 1.hour).ceil
       tag_string = "#{scoreboard_highlight(tag_count)} #{tag_count == 1 ? 'tag' : 'tags'}"
       
 
       tag_string.html_safe
-    else
-      'Deceased!'
     end
   end
 end

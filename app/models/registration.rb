@@ -3,9 +3,7 @@ class Registration < ActiveRecord::Base
   belongs_to :game
   belongs_to :squad
   has_many :infractions
-  has_many :feeds
   has_many :missions, :class_name => "Attendance"
-  has_many :has_fed, :foreign_key => "feeder_id"
   has_many :tagged, :foreign_key => "tagger_id", :class_name => "Tag"
   has_many :taggedby, :foreign_key => "tagee_id", :class_name => "Tag"
   has_many :check_ins
@@ -103,25 +101,6 @@ class Registration < ActiveRecord::Base
     }
   end
 
-  def most_recent_feed
-    # Does not adjust for UTC offset!
-    # Get the time the player turned into a zombie:
-    tag = self.killing_tag
-    zombietime = tag.datetime + 1.hour unless tag.nil?
-    zombietime = self.game.game_begins if self.is_oz
-    zombietime ||= Time.at(0)
-    # Get the most recent tag that player has made:
-    tag = self.tagged.sort{|a,b| b.datetime <=> a.datetime}.first
-    tagtime = tag.datetime unless tag.nil?
-    tagtime ||= Time.at(0) # (if they have no tags)
-    # Get the most recent feed that player has been given:
-    feed = self.feeds.sort{|a,b| b.datetime <=> a.datetime}.first
-    feedtime = feed.datetime unless feed.nil?
-    feedtime ||= Time.at(0) # (if they have no feeds)
-    return [zombietime, feedtime, tagtime].max
-  end
-
-
   def is_human?
     # A player is human if and only if they have not been tagged in game (i.e. outside a mission)
     self.killing_tag.nil? and not self.is_oz
@@ -129,8 +108,8 @@ class Registration < ActiveRecord::Base
 
   def is_zombie?
     # A player is a zombie if they have been tagged in game and have not yet starved.
-    return true if self.is_oz and self.most_recent_feed + 48.hours >= Game.now(self.game)
-    return (!self.killing_tag.nil? and self.most_recent_feed + 48.hours >= Game.now(self.game))
+    return true if self.is_oz
+    return (!self.killing_tag.nil?)
   end
 
 

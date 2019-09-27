@@ -10,7 +10,7 @@ class TagsController < ApplicationController
     @tag = Tag.new
     @zombies = Registration.where(:game_id => @current_game, :faction_id => 1).
       includes(:tagged, :taggedby, :missions, :person).
-      sort_by { |x| [ (x.time_until_death / 1.hour).ceil, -x.tagged.length ] }
+      sort_by { |x| [  -x.tagged.length ] }
 
   end
 
@@ -37,6 +37,5 @@ class TagsController < ApplicationController
       redirect_to new_tag_url()
       return
     end
-    Delayed::Job.enqueue SendNotification.new(:tag, @tag)
   end
 end

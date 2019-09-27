@@ -63,7 +63,6 @@ class UpdateGameState
 
     factions[:zombie].each do |h|
       if h.faction_id == 0
-        h.human_type = nil
         Delayed::Job.enqueue SendNotification.new(h.person,
           "Welcome to the horde. Wear your headband with pride! Zombie Chant: What do we want? Brains! When do we want it? Brains!")
       end

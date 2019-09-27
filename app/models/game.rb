@@ -99,7 +99,7 @@ class Game < ActiveRecord::Base
   end
 
   def graph_data
-    states = registrations.includes([:game, :taggedby, :tagged, :feeds]).map{ |x| x.state_history }
+    states = registrations.includes([:game, :taggedby, :tagged]).map{ |x| x.state_history }
     tslength = ((game_ends - game_begins) / 240).floor
     @data = {}
     240.times do |dt|
