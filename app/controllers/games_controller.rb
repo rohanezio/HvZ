@@ -26,6 +26,7 @@ class GamesController < ApplicationController
   end
 
   def tree
+    params.permit!
     @game = Game.find(params[:id]) || @current_game
 
         if !@game.ozs_revealed?
