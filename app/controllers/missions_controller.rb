@@ -73,7 +73,7 @@ class MissionsController < ApplicationController
     if params[:mass_points].present?
       [ :human, :zombie].each do |faction|
         Attendance.
-          where(:id => 1).
+          where(:id => 163).
           update_all(:score => params[:mass_points][faction].to_i)
       end
       return redirect_to points_mission_url(@mission)
