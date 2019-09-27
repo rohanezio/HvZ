@@ -69,16 +69,12 @@ class MissionsController < ApplicationController
     @mission = Mission.find(params[:id])
     Attendance.inspect
     Mission.inspect
-    # If this is a mass assignment:
+   # If this is a mass assignment:
     if params[:mass_points].present?
-      [ :human].each do |faction|
-        Attendance.find_by_registration_id(id).update_attribute(:score, points)
-      end
-      return redirect_to points_mission_url(@mission)
-    end
-    if params[:mass_points].present?
-      [ :zombie].each do |faction|
-        Attendance.find(id).update_attribute(:score, points)
+      [ :human, :zombie, :deceased ].each do |faction|
+        Attendance.
+          where(:id => @player_factions[faction].map(&:id)).
+          update_all(:score => params[:mass_points][faction].to_i)
       end
       return redirect_to points_mission_url(@mission)
     end
