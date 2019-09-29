@@ -72,7 +72,7 @@ class MissionsController < ApplicationController
    # If this is a mass assignment:
     if params[:mass_points].present?
       [ :human, :zombie].each do |faction|
-        Attendance.find(17).update_attributes(:score => params[:mass_points][faction].to_i)
+        Attendance.find(@mission).update_attributes(:score => params[:mass_points][faction].to_i)
       end
       return redirect_to points_mission_url(@mission)
     end
