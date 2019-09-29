@@ -22,7 +22,7 @@
         %tr
           %td
             %b Pronouns:
-          %td= f.select :pronouns, [['',1], ['He/Him/His', 2], ['She/Her/Hers', 3], ['They/Them/Theirs', 4],['Other',5]]
+          %td= f.text_field :pronouns
         -if @is_admin
           %tr
             %td.admin
