@@ -9,9 +9,7 @@ class PeopleController < ApplicationController
       return redirect_to root_url
     end
     @person.update_attribute(:pronouns, params[:person][:pronouns])
-    if @person.pronouns == 'Other'
-      @person.update_attribute(:pronouns, params[:person][:other_pronouns])
-    end
+    @person.update_attribute(:other_pronouns, params[:person][:other_pronouns])
     # Protect against name changes
     if params[:person][:name] != @person.name
       if @is_admin || @person.can_change_name?
