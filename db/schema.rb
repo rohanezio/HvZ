@@ -97,11 +97,12 @@ ActiveRecord::Schema.define(version: 20140325043306) do
     t.binary   "picture"
     t.string   "phone"
     t.datetime "last_login"
-    t.boolean  "is_admin",      default: false
+    t.boolean  "is_admin",       default: false
     t.datetime "created_at"
     t.datetime "updated_at"
     t.date     "date_of_birth"
     t.string   "pronouns"
+    t.string   "other_pronouns"
   end
 
   create_table "registrations", force: :cascade do |t|
