@@ -23,8 +23,8 @@
           %td
             %b Pronouns:
           %td= f.select :pronouns, [[''], ['He/Him/His'], ['She/Her/Hers'], ['They/Them/Theirs'],['Other']]
-          -if @pronouns=='Other'
-            = f.text_field :pronouns
+            -if @Person.pronouns=='Other'
+              = f.text_field :pronouns
         -if @is_admin
           %tr
             %td.admin
