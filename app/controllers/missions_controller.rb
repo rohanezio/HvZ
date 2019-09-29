@@ -71,11 +71,18 @@ class MissionsController < ApplicationController
     Mission.inspect
    # If this is a mass assignment:
     if params[:mass_points].present?
-      [ :human, :zombie].each do |faction|
+      [ :human].each do |faction|
         Attendance.where(mission_id: @mission).update_all(:score => params[:mass_points][faction].to_i)
       end
       return redirect_to points_mission_url(@mission)
     end
+    if params[:mass_points].present?
+      [ :zombie].each do |faction|
+        Attendance.where(mission_id: @mission).update_all(:score => params[:mass_points][faction].to_i)
+      end
+      return redirect_to points_mission_url(@mission)
+    end
+
 
     # If this is an individual assignment:
     if params[:points].present?
