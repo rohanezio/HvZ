@@ -35,6 +35,11 @@
         %td=check_box_tag 'registration[is_off_campus]'
       %tr
         %td
+          %b=f.label :oz_hours, "Number of hours you can dedicate to being an OZ in the first 3 days"
+        %td
+          =f.number_field :oz_hours
+      %tr
+        %td
           %label Squad
         %td=collection_select :registration, :squad_id, @squads, :id, :name, {:include_blank => true}
   =submit_tag "Register"
