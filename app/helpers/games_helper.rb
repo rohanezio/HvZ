@@ -4,7 +4,7 @@ module GamesHelper
   end
 
   def get_scoreboard_text(registration)
-    cache_count   = registration.bonus_codes.where(is_quest:true).length
+    cache_count   = registration.bonus_codes.find(is_quest: true).length
     mission_count = registration.missions.length
     tag_count     = registration.tagged.length
 
