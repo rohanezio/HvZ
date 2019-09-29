@@ -1,4 +1,5 @@
 - registrations_by_faction = game.registrations.group(:faction_id).count
+- games = game
 %tbody
   - Registration::FACTION_NAMES.each do |faction_id, faction_name|
     %tr
@@ -16,5 +17,5 @@
     %td
       %b Total:
     %td
-      = @game.z_quota
+      = games.z_quota
 
