@@ -77,6 +77,9 @@ ActiveRecord::Schema.define(version: 20190929041610) do
     t.text     "rules",               default: "No rules have been posted yet. Check back later!"
     t.string   "time_zone",           default: "Eastern Time (US & Canada)"
     t.datetime "oz_reveal"
+    t.integer  "z_quota"
+    t.integer  "ammo"
+    t.integer  "stun"
   end
 
   create_table "missions", force: :cascade do |t|
@@ -103,15 +106,6 @@ ActiveRecord::Schema.define(version: 20190929041610) do
     t.date     "date_of_birth"
     t.string   "pronouns"
     t.string   "other_pronouns"
-  end
-
-  create_table "quest_codes", force: :cascade do |t|
-    t.string   "code"
-    t.integer  "points"
-    t.integer  "game_id"
-    t.integer  "registration_id"
-    t.datetime "created_at",      null: false
-    t.datetime "updated_at",      null: false
   end
 
   create_table "registrations", force: :cascade do |t|
