@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140325043306) do
+ActiveRecord::Schema.define(version: 20190929041610) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -103,6 +103,15 @@ ActiveRecord::Schema.define(version: 20140325043306) do
     t.date     "date_of_birth"
     t.string   "pronouns"
     t.string   "other_pronouns"
+  end
+
+  create_table "quest_codes", force: :cascade do |t|
+    t.string   "code"
+    t.integer  "points"
+    t.integer  "game_id"
+    t.integer  "registration_id"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
   end
 
   create_table "registrations", force: :cascade do |t|
