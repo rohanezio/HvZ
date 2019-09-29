@@ -10,7 +10,7 @@ class PeopleController < ApplicationController
     end
     @person.update_attribute(:pronouns, params[:person][:pronouns])
     if @person.pronouns == 'Other'
-      @person.update_attribute(:other_pronouns, 'test')
+      @person.update_attribute(:pronouns, 'test')
     end
     # Protect against name changes
     if params[:person][:name] != @person.name
