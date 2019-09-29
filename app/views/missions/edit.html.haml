@@ -16,4 +16,8 @@
           %b=f.label :end, "Mission End Time:"
         %td=f.datetime_select :end
       %tr
+        %td
+          %b=f.label :storyline, "Mission Link:"
+        %td=f.text_field :storyline
+      %tr
         %td{:colspan=>2}=f.submit
