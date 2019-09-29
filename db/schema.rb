@@ -39,6 +39,7 @@ ActiveRecord::Schema.define(version: 20190929041610) do
     t.integer  "registration_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.boolean  "is_quest"
   end
 
   create_table "check_ins", force: :cascade do |t|
