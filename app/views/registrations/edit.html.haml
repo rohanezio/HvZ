@@ -47,8 +47,10 @@
             %td.admin=f.label :is_oz, "Is OZ?"
             %td=f.check_box :is_oz
           %tr
-            %td How many Hours can you dedicate to being an OZ?
-            %td=f.text_field :oz_hours
+            %td
+              %b=f.label :oz_hours, "Number of hours you can dedicate to being an OZ in the first 3 days"
+            %td
+              =f.number_field :oz_hours
         %tr
           %td{:colspan=>2, :style=>"text-align:center"}=f.submit "Save Changes"
 
