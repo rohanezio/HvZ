@@ -31,8 +31,11 @@
           %td=f.label :card_code, "Card Code:"
           %td=f.text_field :card_code, :disabled => :true
         %tr
-          %td=f.label :wants_oz, "Wants OZ?"
+          %td=f.label :wants_oz, "Want OZ?"
           %td=f.check_box :wants_oz
+        %tr
+          %td How many Hours can you dedicate to being an OZ?
+          %td=f.text_field :oz_hours
         -if @is_admin
           %tr
             %td.admin=f.label :squad, "Squad"
@@ -43,6 +46,9 @@
           %tr
             %td.admin=f.label :is_oz, "Is OZ?"
             %td=f.check_box :is_oz
+          %tr
+            %td How many Hours can you dedicate to being an OZ?
+            %td=f.text_field :oz_hours
         %tr
           %td{:colspan=>2, :style=>"text-align:center"}=f.submit "Save Changes"
 
