@@ -6,11 +6,6 @@
   = form_for(@code) do |f|
     %table
       %tbody
-         %tr
-            %td
-              %b=f.label :wants_oz, "Place me in the Original Zombie Pool!"
-            %td
-              =f.check_box :wants_oz
         %tr
           %td.admin= f.label :is_quest, "Is this a quest?:"
           %td= f.check_box :is_quest  
