@@ -12,10 +12,18 @@
       %b Total:
     %td
       = registrations_by_faction.values.sum
-
   %tr
     %td
-      %b Total:
+      %b Zombie Quota:
     %td
       = games.z_quota
-
+ %tr
+    %td
+      %b Ammo Cap:
+    %td
+      = games.ammo
+%tr
+    %td
+      %b Stun Timer:
+    %td
+      = games.stun
