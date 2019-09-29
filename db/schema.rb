@@ -41,15 +41,6 @@ ActiveRecord::Schema.define(version: 20140325043306) do
     t.datetime "updated_at"
   end
 
-  create_table "quest_codes", force: :cascade do |t|
-    t.string   "code"
-    t.integer  "points"
-    t.integer  "game_id"
-    t.integer  "registration_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
   create_table "check_ins", force: :cascade do |t|
     t.integer  "registration_id"
     t.string   "hostname"
