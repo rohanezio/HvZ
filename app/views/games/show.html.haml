@@ -82,7 +82,7 @@
               %tr
                 %td
                   %b= link_to s.name, squad_url(s.id)
-                %td= s.display_score
+                %td= s.avg_points()
       -else
         %div{:style=>"height:130px"}
           %b No squads found.
