@@ -117,6 +117,7 @@ ActiveRecord::Schema.define(version: 20140325043306) do
     t.boolean  "wants_oz",      default: false
     t.boolean  "is_off_campus", default: false
     t.integer  "squad_id"
+    t.integer  "oz_hours"
   end
 
   create_table "squads", force: :cascade do |t|
