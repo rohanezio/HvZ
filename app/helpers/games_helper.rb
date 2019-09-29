@@ -23,7 +23,8 @@ module GamesHelper
       quest_string    = "#{scoreboard_highlight(quest_count)} #{quest_count == 1 ? 'quest' : 'quests'}" if quest_count > 0
       mission_string  = "#{scoreboard_highlight(mission_count)} #{mission_count == 1 ? 'mission' : 'missions'}" if mission_count > 0
 
-      tag_string.html_safe
+      [tag_string, cache_string, quest_string, mission_string].compact.join('+').html_safe
+
     end
   end
 end
