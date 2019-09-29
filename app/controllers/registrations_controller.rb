@@ -31,8 +31,6 @@ class RegistrationsController < ApplicationController
       first_or_initialize(params[:registration])
     @registration.score = 0
     @registration.squad = nil unless params[:squad_select] == "existing"
-    @registration.oz_hours = params[:oz_hours] 
-    @registration.update_attribute(:oz_hours, params[:registration][:oz_hours])
 
     if !@registration.save
       flash[:error] = "Error, could not register you! #{@registration.errors.full_messages.first}"

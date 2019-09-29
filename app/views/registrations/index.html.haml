@@ -14,6 +14,7 @@
       %th{style: "text-align:center"} Waiver
       %th.admin Edit
       %th.admin Unregister
+      %th{style: "text-align:center"} OZ hours
     %tbody
       - @registrations.each do |r|
         - if r.person.nil?
@@ -32,6 +33,7 @@
           %td{style: "text-align:center"}=faction_id_to_class_human(r)
           %td{style: "text-align:right"}=r.score
           %td{style: "text-align:center"}="Yes" if r.wants_oz
+          %td{style: "text-align:right"}=r.oz_hours
           %td{style: "text-align:center"}
             -if r.person.signed_waiver?(@current_game)
               =link_to "View", registration_showwaiver_url(r)
@@ -39,7 +41,8 @@
               Needs Waiver!
           %td{style: "text-align:center"}=link_to("Edit", edit_registration_url(r), class: "admin")
           %td{style: "text-align:center"}=link_to("Unregister", registration_url(r), class: "admin", method: :delete, confirm: "Are you sure you wish to delete this registration?")
+
 - else
   No players registered!
   %br
-  Quick! Do more advertising!
+  %b=link_to "Register Someone By Case ID", admin_register_game_url(@current_game)
