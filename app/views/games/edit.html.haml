@@ -39,6 +39,18 @@
             =f.datetime_select :game_ends
       %tr
         %td
+          %b Zombie Quota:
+        %td=f.number_field :z_quota
+      %tr
+        %td
+          %b Ammo Cap:
+        %td=f.number_field :ammo
+      %tr
+        %td
+          %b Stun Timer:
+        %td=f.number_field :stun
+      %tr
+        %td
         %td
           %em (You cannot edit game beginning and ending times after they have passed.)
       %tr
