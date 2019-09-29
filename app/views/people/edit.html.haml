@@ -22,8 +22,8 @@
         %tr
           %td
             %b Pronouns:
-          %td           
-            %select#pronouns{name: "Pronouns", onchange: "showfield(this.options[this.selectedIndex].value)"}, [[''], ['He/Him/His'], ['She/Her/Hers'], ['They/Them/Theirs'],['Other']]
+          %td
+            %td= f.text_field :pronouns
         -if @is_admin
           %tr
             %td.admin
@@ -35,5 +35,3 @@
   *SMS notifications for HvZ will be sent out only for important game state changes. For example, you will
   receive a text when you turn into a Zombie, and when you are Deceased. To opt out of receiving these messages, please
   simply do not put your number in this form.
-
-
