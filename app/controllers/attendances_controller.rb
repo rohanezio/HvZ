@@ -3,7 +3,7 @@ class AttendancesController < ApplicationController
 
   def create
     params.permit!
-    @attendance = Attendance.new(params[:id])
+    @attendance = Attendance.new(params[:attendance])
     @attendance.save
     render json: @attendance
   end
