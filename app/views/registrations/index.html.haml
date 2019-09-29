@@ -12,9 +12,9 @@
       %th{style: "text-align:right"} Score
       %th{style: "text-align:center"} Wants OZ?
       %th{style: "text-align:center"} Waiver
+      %th{style: "text-align:center"} OZ hours
       %th.admin Edit
       %th.admin Unregister
-      %th{style: "text-align:center"} OZ hours
     %tbody
       - @registrations.each do |r|
         - if r.person.nil?
