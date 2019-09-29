@@ -22,7 +22,18 @@
         %tr
           %td
             %b Pronouns:
-          %td= f.text_field :pronouns
+          %td
+            :javascript
+              function showfield(name){
+                if(name=='Other')document.getElementById('div1').innerHTML='Please input your prnouns! : <input type="text" name="other" />';
+                else document.getElementById('div1').innerHTML='';
+            }
+            %select#pronouns{name: "Pronouns", onchange: "showfield(this.options[this.selectedIndex].value)"}
+            %option{value: "He/Him/His"} He/Him/His
+            %option{value: "They/Them/Theirs"} They/Them/Theirs
+            %option{value: "She/Her/Hers"} She/Her/Hers
+            %option{value: "Other"} Other
+            %option{value: ""} I'd prefer not to say
         -if @is_admin
           %tr
             %td.admin
