@@ -46,7 +46,7 @@ class Game < ActiveRecord::Base
   def zombietree_json
     { id: "game#{id}", name: short_name, data: {},
       children: registrations(include: [:tagged, :person]).select{|x| !x.is_human? && (x.killing_tag.nil? || x.killing_tag.tagger.nil?)}.map(&:zombietree)
-    }.to_json
+    }.as_json
   end
 
   def ongoing?

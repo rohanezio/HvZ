@@ -30,7 +30,7 @@
             - if @logged_in_person.present?
               = render 'index/userloggedin'
             - else
-              = link_to 'Login', people_login_url
+              %a{:style => "background-color:lightgreen;padding:3px;text-decoration:none;font-weight:bold;", :href => people_login_url} Login
         %ul.navigation
           %li.span-4
             %a{:style => "text-decoration:none;font-weight:bold;", :href => root_url} Home

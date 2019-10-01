@@ -1,0 +1,1 @@
+echo "Delayed::Job.enqueue(UpdateGameState.new(),{ :run_at => Time.now}) && Delayed::Worker.new.run(Delayed::Job.last)" | RAILS_ENV=production rails c

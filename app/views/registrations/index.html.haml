@@ -9,7 +9,8 @@
       %th Full Name
       %th Case ID
       %th{style: "text-align:center"} Current Faction
-      %th{style: "text-align:right"} Score
+      %th{style: "text-align:center"} Score
+      %th{style: "text-align:center"} Pronouns
       %th{style: "text-align:center"} Wants OZ?
       %th{style: "text-align:center"} OZ hours
       %th{style: "text-align:center"} Waiver
@@ -31,9 +32,10 @@
               ="(OZ)" if r.is_oz
           %td=r.person.caseid
           %td{style: "text-align:center"}=faction_id_to_class_human(r)
-          %td{style: "text-align:right"}=r.score
+          %td{style: "text-align:center"}=r.score
+          %td{style: "text-align:center"}=r.person.pronouns
           %td{style: "text-align:center"}="Yes" if r.wants_oz
-          %td{style: "text-align:right"}=r.oz_hours
+          %td{style: "text-align:center"}=r.oz_hours
           %td{style: "text-align:center"}
             -if r.person.signed_waiver?(@current_game)
               =link_to "View", registration_showwaiver_url(r)
